@@ -5,7 +5,7 @@ public class App {
     public static void main(String[] args) throws Exception {
         new MainProcessNew().scriptProcess(
                 "C:\\Users\\MISA\\Desktop\\Workspace\\S6\\Mr-Naina\\Version 2\\JSP-No-Code\\JSP-NO-CODE\\test\\fichierdegeneration.tmpl",
-                "java-spring-controller-spec", new String[] { "student" });
+                "java-spring-controller", new String[] { "promotion" });
         // new MainProcess().scriptProcessOnePage(
         //     "C:\\Users\\MISA\\Desktop\\Workspace\\S6\\Mr-Naina\\GenesisForJSP\\test\\fichierdegeneration.tmpl",
         //     "jsp-nav", new String[] { "student","promotion" }, "C:/Users/MISA/Desktop/Workspace/S6/Mr-Naina/GenesisForJSP/test/fixTemplate/Nav.jsp" ,"#here#","nav");

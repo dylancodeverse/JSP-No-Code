@@ -176,7 +176,7 @@ randomContent:{
         return "redirect:/#entity#s/list";
     /}
 
-    @GetMapping("/edit///{id/}")
+    @GetMapping("/edit//{id/}")
     public String showEdit#Entity#Form(@PathVariable Integer id, Model model) /{
         model.addAttribute("#entity#", #entity#Service.findById(id));
         return "pages/#entity#/edit";
@@ -191,7 +191,7 @@ randomContent:{
         return "redirect:/#entity#s/list";
     /}
 
-    @GetMapping("/delete///{id/}")
+    @GetMapping("/delete//{id/}")
     public String delete#Entity#(@PathVariable Integer id) /{
         #entity#Service.deleteById(id);
         return "redirect:/#entity#s/list";
@@ -293,7 +293,7 @@ PostAddContentEnd:{
 
 GetEditDeclaration:{
     java-spring-controller:{
-    @GetMapping("/edit///{id/}")
+    @GetMapping("/edit//{id/}")
     public String showEdit#Entity#Form(@PathVariable #PkType# id, Model model) /{
         #Entity# #entity# = #entity#Service.findById(id);
     }
@@ -351,7 +351,7 @@ PostEditContent5:{
 
 DeleteContentMethod:{
     java-spring-controller:{
-    @GetMapping("/delete///{id/}")
+    @GetMapping("/delete//{id/}")
     public String delete#Entity#(@PathVariable Integer id) /{
         #entity#Service.deleteById(id);
         return "redirect:/#entity#s/list";

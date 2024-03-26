@@ -69,7 +69,7 @@ public class StudentController {
         return "redirect:/students/list";
     }    
 
-    @GetMapping("/edit{id}")
+    @GetMapping("/edit/{id}")
     public String showEditStudentForm(@PathVariable Integer id, Model model) {
         Student student = studentService.findById(id);
 
@@ -103,7 +103,7 @@ public class StudentController {
         return "redirect:/students/list";
     }        
 
-    @GetMapping("/delete{id}")
+    @GetMapping("/delete/{id}")
     public String deleteStudent(@PathVariable Integer id) {
         studentService.deleteById(id);
         return "redirect:/students/list";

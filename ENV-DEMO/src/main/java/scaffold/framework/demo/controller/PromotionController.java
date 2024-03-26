@@ -35,7 +35,7 @@ public class PromotionController {
         promotionService.save(promotion);
         return "redirect:/promotions/list";
     }
-    @GetMapping("/edit{id}")
+    @GetMapping("/edit/{id}")
     public String showEditPromotionForm(@PathVariable Integer id, Model model) {
         model.addAttribute("promotion", promotionService.findById(id));
         return "pages/promotion/edit";
@@ -48,7 +48,7 @@ public class PromotionController {
         }
         return "redirect:/promotions/list";
     }
-    @GetMapping("/delete{id}")
+    @GetMapping("/delete/{id}")
     public String deletePromotion(@PathVariable Integer id) {
         promotionService.deleteById(id);
         return "redirect:/promotions/list";
