@@ -61,7 +61,7 @@ fieldsNoPrimaryKeyDeclaration:{
 fieldsForeignClass:{
     java-spring-model:{
     @ManyToOne
-    @JoinColumn(name = "#name#", nullable = false)
+    @JoinColumn(name = "#pkName#", nullable = false)
     #encaps# #type# #name# ;
     }
 }
@@ -142,6 +142,9 @@ randomContent:{
     public List<#Entity#> findAll() /{
         return #entity#Repository.findAll();
     /}
+    public Page<#Entity#> findAll(int pageNumber, int itemCount) /{
+        return #entity#Repository.findAll(PageRequest.of(pageNumber, itemCount));
+    /}    
 
     public #Entity# findById(Integer id) /{
         return #entity#Repository.findById(id).orElse(null);
@@ -239,7 +242,8 @@ constructorContentEnd:{
 GetDeclarationMethod:{
     java-spring-controller:{
     @GetMapping("/#url#")
-    public String #prefix##Entity#s(Model model) /{
+    public String #prefix##Entity#s(Model model,@RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "5") int size) /{
     }
 }
 
@@ -249,9 +253,15 @@ GetContentMethod:{
     }
 }
 
+GetContentMethodPagination:{
+    java-spring-controller:{
+        model.addAttribute("#entity#s", #entity#Service.findAll(page > 0 ? page : 0, size));
+    }    
+}
+
 GetContentEndLineMethod:{
     java-spring-controller:{
-        return "pages/#entity#/list";
+        return "pages/#entity#/#endpoint#";
     /}        
     }   
 }

@@ -1,4 +1,4 @@
-java-spring-controller-spec:{    
+java-spring-controller-spec-pagination:{    
 
     packageDeclaration:{
         #package#= scaffold.framework.demo.controller
@@ -89,13 +89,19 @@ java-spring-controller-spec:{
         #Entity#= $datasources$.getLabelUpFirst$
     }
 
-    GetContentMethod:{
+    GetContentMethodPagination:{
         #entity# =  $datasources$.getLabel$
+        
     }
+    GetContentMethod:{
+        separator=concat
+        <loop each $datasources$.getAttributesForeignClass : Attribute>
+            #entity# =  Attribute.getForeignKeyInformation.getTableOrigine$
+        <loop/>                        
+    }    
     GetContentEndLineMethod:{
         #entity# =  $datasources$.getLabel$
         #endpoint# = list
-
     }
     GetDeclarationMethod:{
         #url#= add
@@ -107,12 +113,12 @@ java-spring-controller-spec:{
         <loop each $datasources$.getAttributesForeignClass : Attribute>
             #entity# =  Attribute.getForeignKeyInformation.getTableOrigine$
         <loop/>                        
-    }
+    }    
     GetContentEndLineMethod:{
         #entity# =  $datasources$.getLabel$
         #endpoint# = add
 
-    }     
+    }
     PostFlexDeclaration:{
         #flexName#=add
         #Entity#= $datasources$.getLabelUpFirst$

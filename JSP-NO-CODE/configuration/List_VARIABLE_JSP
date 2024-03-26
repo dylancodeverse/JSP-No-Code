@@ -28,6 +28,27 @@ jspFormAfterImport:{
                             <h5 class="card-title fw-semibold mb-4">Add New #Entity#</h5>
                             <form action="/#entity#s/#formName#" method="post">                
     }
+    jsp-edit:{
+        <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+        <html>
+        <jsp:include page="../../templates/header.jsp">
+            <jsp:param name="title" value="#FormName# #entity#"/>
+        </jsp:include>
+        <body>
+            <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed">
+                <%@ include file="../../templates/nav.jsp" %>
+                <div class="body-wrapper">
+                    <%@ include file="../../templates/app-header.jsp" %>
+                    <div class="container-fluid">
+                        <div class="container-fluid">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title fw-semibold mb-4">Edit #Entity#</h5>
+                                    <% #Entity# #entity# = (#Entity#) request.getAttribute("#entity#"); %>
+                                    <form action="/#entity#s/#formName#" method="post">
+                                        <input type="hidden" name="id" value="<%= #entity#.get#PkName#() %>">
+
+    }
 }
 
 inputFlex:{
@@ -38,21 +59,41 @@ inputFlex:{
                                     <div class="form-text">For errors for example.</div>
                                 </div>        
     }
+    jsp-edit:{
+                                <div class="mb-3">
+                                    <label for="name" class="form-label">#Column#:</label>
+                                    <input type="#type#" id="#column#" name="#column#" class="form-control" value="<%= #entity#.get#Column#() %>"/>
+                                    <div class="form-text">For errors for example.</div>
+                                </div>                
+    }
 }
 
 inputForeignTable:{
-    jsp:{
+    jsp-edit:{
                                 <div class="mb-3">
                                     <label for="ftId" class="form-label">FT:</label>
                                     <select id="ftId" class="form-select" name="ftId">
                                         <% List<FT> fts = (List<FT>) request.getAttribute("fts"); %>
-                                        <option value="-1">Choose</option>
+                                        <option value="<%= #entity#.getFT().getId() %>"><%= #entity#.getFT().toString() %></option>
+
                                         <% for(int i = 0; i < fts.size(); i++) /{ %>
                                             <option value="<%= fts.get(i).getId() %>"><%= fts.get(i).toString() %></option>
                                         <% /} %>
                                     </select>
                                 </div>        
     }
+    jsp-add:{
+        <div class="mb-3">
+            <label for="ftId" class="form-label">FT:</label>
+            <select id="ftId" class="form-select" name="ftId">
+                <% List<FT> fts = (List<FT>) request.getAttribute("fts"); %>
+                    <option value="-1">Choose</option>
+                <% for(int i = 0; i < fts.size(); i++) /{ %>
+                    <option value="<%= fts.get(i).getId() %>"><%= fts.get(i).toString() %></option>
+                <% /} %>
+            </select>
+        </div>        
+}    
 }
 
 inputText:{
@@ -95,7 +136,7 @@ endLineJspForm:{
 
 
 Imports:{
-    jsp-list:{
+    jsp:{
 <%@ page import="#import#" %>
     }   
 }
@@ -159,10 +200,10 @@ bodyThree:{
                                                     </th>
                                                 </tr>
                                             </thead>
-                                                <% Page<#Entity#> #entity# = (Page<#Entity#>) request.getAttribute("#entity#s");
-                                                int currentPage = #entity#.getNumber();
-                                                int totalPages = #entity#.getTotalPages();
-                                                List<#Entity#> #entity#s = #entity#.getContent();
+                                                <% Page<#Entity#> #entity#Page = (Page<#Entity#>) request.getAttribute("#entity#s");
+                                                int currentPage = #entity#Page.getNumber();
+                                                int totalPages = #entity#Page.getTotalPages();
+                                                List<#Entity#> #entity#s = #entity#Page.getContent();
                                                 for (#Entity# #entity# : #entity#s) /{ %>
 
                                                     <tr>        

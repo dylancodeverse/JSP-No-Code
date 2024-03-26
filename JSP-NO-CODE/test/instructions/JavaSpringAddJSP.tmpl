@@ -1,4 +1,16 @@
 jsp-add:{
+    Imports:{
+        #import#= java.util.List
+    }    
+    Imports:{
+        #import#= scaffold.framework.demo.entity.$datasources$.getLabelUpFirst$
+    }    
+    Imports:{
+        separator=concat
+        <loop each $datasources$.getAttributesForeignClass : Attribute>
+            #import#= scaffold.framework.demo.entity.Attribute.getForeignKeyInformation.getTableOrigineUpFirst$         
+        <loop/>    
+    }    
     jspFormAfterImport:{
         #FormName#= Add
         #formName# = add
@@ -7,10 +19,11 @@ jsp-add:{
     }
     inputFlex:{
         separator=concat
-        <loop each $datasources$.getAttributesWithLabelFirstNoForeignTable : tay>
-            #Column#= tay.getAttrName$
-            #column# = tay.getAttrName$
-            #type#= tay.getHTMLType$
+        <loop each $datasources$.getAttributesWithLabelFirstNoForeignTableAndNoPK : ito>
+            #Column#= ito.getAttrName$
+            #column# = ito.getAttrName$
+            #type#= ito.getHTMLType$
+            #entity# = $datasources$.getLabel$            
         <loop/>        
     }
     inputForeignTable:{
@@ -18,6 +31,7 @@ jsp-add:{
         <loop each $datasources$.getAttributesForeignClass : Attribute>
             FT =Attribute.getForeignKeyInformation.getTableOrigineUpFirst$         
             ft=Attribute.getForeignKeyInformation.getTableOrigine$
+            #entity# = $datasources$.getLabel$            
         <loop/>                
     }
     endLineJspForm:{

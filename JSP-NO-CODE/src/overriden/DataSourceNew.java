@@ -2,7 +2,6 @@ package overriden;
 
 import java.util.ArrayList;
 
-
 import data.datasource.Attribute;
 import data.datasource.DataSource;
 
@@ -43,6 +42,21 @@ public class DataSourceNew extends DataSource {
         ArrayList<Attribute> ls = new ArrayList<>();
         for (int i = 0; i < aaAttributes.length; i++) {
             if (aaAttributes[i].getAttrName() != null && aaAttributes[i].getForeignTableName() == null
+                    && aaAttributes[i].getForeignKeyInformation() == null) {
+                aaAttributes[i].setAttrName(upfirst(aaAttributes[i].getAttrName()));
+                ls.add(aaAttributes[i]);
+
+            }
+        }
+        return ls.toArray(new Attribute[ls.size()]);
+    }
+
+    public Attribute[] getAttributesWithLabelFirstNoForeignTableAndNoPK() {
+        Attribute[] aaAttributes = getAttributes();
+        ArrayList<Attribute> ls = new ArrayList<>();
+        for (int i = 0; i < aaAttributes.length; i++) {
+            if (!aaAttributes[i].isPrimaryKey() && aaAttributes[i].getAttrName() != null
+                    && aaAttributes[i].getForeignTableName() == null
                     && aaAttributes[i].getForeignKeyInformation() == null) {
                 aaAttributes[i].setAttrName(upfirst(aaAttributes[i].getAttrName()));
                 ls.add(aaAttributes[i]);

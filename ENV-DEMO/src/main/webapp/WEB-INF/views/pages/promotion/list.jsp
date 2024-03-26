@@ -49,7 +49,6 @@
 
                                                 <td class="border-bottom-0"><h6 class="fw-semibold mb-0"><%= promotion.getId() %></h6></td>
 
-                                                        <td class="border-bottom-0"><%= promotion.getId().toString() %></td>
                                                         <td class="border-bottom-0"><%= promotion.getName().toString() %></td>
                                                         <td class="border-bottom-0"><%= promotion.getYear().toString() %></td>
 

@@ -1,16 +1,31 @@
 jsp-edit:{
+    Imports:{
+        #import#= java.util.List
+    }
+    Imports:{
+        #import#= scaffold.framework.demo.entity.$datasources$.getLabelUpFirst$
+    }
+    Imports:{
+        separator=concat
+        <loop each $datasources$.getAttributesForeignClass : Attribute>
+            #import#= scaffold.framework.demo.entity.Attribute.getForeignKeyInformation.getTableOrigineUpFirst$         
+        <loop/>    
+    }
+
     jspFormAfterImport:{
         #FormName#= Edit
         #formName# = edit
         #Entity# = $datasources$.getLabelUpFirst$
         #entity#= $datasources$.getLabel$
+        #PkName#=$datasources$.getAttributeWithPK.getAttrNameUpFirst$
     }
     inputFlex:{
         separator=concat
-        <loop each $datasources$.getAttributesWithLabelFirstNoForeignTable : String>
+        <loop each $datasources$.getAttributesWithLabelFirstNoForeignTableAndNoPK : String>
             #Column#= String.getAttrName$
             #column# = String.getAttrName$
             #type#= String.getHTMLType$
+            #entity# = $datasources$.getLabel$
         <loop/>        
     }
     inputForeignTable:{
@@ -18,6 +33,7 @@ jsp-edit:{
         <loop each $datasources$.getAttributesForeignClass : Attribute>
             FT =Attribute.getForeignKeyInformation.getTableOrigineUpFirst$         
             ft=Attribute.getForeignKeyInformation.getTableOrigine$
+            #entity# = $datasources$.getLabel$            
         <loop/>                
     }    
     endLineJspForm:{

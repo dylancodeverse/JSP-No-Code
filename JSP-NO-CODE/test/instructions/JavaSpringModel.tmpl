@@ -42,6 +42,7 @@ java-spring-model:{
     fieldsForeignClass:{
         separator=concat
         <loop each $datasources$.getAttributesForeignClass : Attribute>
+            #pkName#= Attribute.getAttrName$
             #encaps# = private
             #type# = Attribute.getForeignKeyInformation.getTableOrigineUpFirst$
             #name# = Attribute.getForeignKeyInformation.getTableOrigine$

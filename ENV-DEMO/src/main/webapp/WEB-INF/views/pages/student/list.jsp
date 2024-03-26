@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="org.springframework.data.domain.Page" %>
 
 <%@ page import="java.util.List" %>
 
@@ -42,18 +43,23 @@
                                                     </th>
 
                                                     <th class="border-bottom-0">
+                                                        <h6 class="fw-semibold mb-0">Promotion</h6>
+                                                    </th>
+
+                                                    <th class="border-bottom-0">
                                                         <h6 class="fw-semibold mb-0">Actions</h6>
                                                     </th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
-                                                <% List<Student> students = (List<Student>) request.getAttribute("students");
+                                                <% Page<Student> studentPage = (Page<Student>) request.getAttribute("students");
+                                                int currentPage = studentPage.getNumber();
+                                                int totalPages = studentPage.getTotalPages();
+                                                List<Student> students = studentPage.getContent();
                                                 for (Student student : students) { %>
-                                                    <tr>
+                                                    <tr>        
 
                                                 <td class="border-bottom-0"><h6 class="fw-semibold mb-0"><%= student.getId() %></h6></td>
 
-                                                        <td class="border-bottom-0"><%= student.getId().toString() %></td>
                                                         <td class="border-bottom-0"><%= student.getName().toString() %></td>
                                                         <td class="border-bottom-0"><%= student.getFirst_name().toString() %></td>
                                                         <td class="border-bottom-0"><%= student.getBirthdate().toString() %></td>
@@ -68,6 +74,24 @@
                                                 <% } %>                   
                                             </tbody>
                                         </table>
+                                        <div class="mt-3 d-flex justify-content-end align-items-center">
+                                            <nav aria-label="Page navigation example">
+                                                <ul class="pagination m-0">
+                                                    <li class="page-item">
+                                                        <a class="page-link" href="/students/list?page=<%= currentPage - 1 %>" aria-label="Previous">
+                                                            <span aria-hidden="true">&laquo;</span>
+                                                            <span class="sr-only">Previous</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="page-item">
+                                                        <a class="page-link" href="/students/list?page=<%= currentPage + 1 %>" aria-label="Next">
+                                                            <span class="sr-only">Next</span>
+                                                            <span aria-hidden="true">&raquo;</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </nav>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -81,5 +105,5 @@
     <%@ include file="../../templates/main-footer.jsp" %>
     <%@ include file="../../templates/page-footer.jsp" %>
 </body>
-</html>                
+</html>        
 

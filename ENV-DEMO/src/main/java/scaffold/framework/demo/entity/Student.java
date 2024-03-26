@@ -24,7 +24,7 @@ public class Student {
 
 
     @ManyToOne
-    @JoinColumn(name = "promotion", nullable = false)
+    @JoinColumn(name = "promotion_id", nullable = false)
     private Promotion promotion ;
 
     public void setId (Integer value) {

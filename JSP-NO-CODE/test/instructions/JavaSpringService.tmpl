@@ -3,11 +3,13 @@ java-spring-service:{
                 #package# = scaffold.framework.demo.service
     }
     Imports:{
-        loop = 2
+        loop = 4
         separator=concat
         #packageSource#=    <loop>
                                  java.util.List
                                  org.springframework.stereotype.Service
+                                 org.springframework.data.domain.Page
+                                 org.springframework.data.domain.PageRequest
                             <loop/>
     }
     

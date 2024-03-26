@@ -12,7 +12,7 @@ import scaffold.framework.demo.entity.Promotion ;
 import scaffold.framework.demo.service.PromotionService ;
 
 @Controller
-@RequestMapping("/promotion")        
+@RequestMapping("/promotions")        
 
 public class PromotionController {
 

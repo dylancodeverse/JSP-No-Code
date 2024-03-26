@@ -16,11 +16,6 @@
                             <form action="/promotions/add" method="post">                
 
                                 <div class="mb-3">
-                                    <label for="name" class="form-label">Id:</label>
-                                    <input type="number" id="Id" name="Id" class="form-control" required  />
-                                    <div class="form-text">For errors for example.</div>
-                                </div>        
-                                <div class="mb-3">
                                     <label for="name" class="form-label">Name:</label>
                                     <input type="text" id="Name" name="Name" class="form-control" required  />
                                     <div class="form-text">For errors for example.</div>

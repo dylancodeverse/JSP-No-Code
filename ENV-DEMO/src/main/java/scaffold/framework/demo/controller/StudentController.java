@@ -18,7 +18,7 @@ import scaffold.framework.demo.service.PromotionService ;
 import scaffold.framework.demo.entity.Promotion ;
 
 @Controller
-@RequestMapping("/student")        
+@RequestMapping("/students")        
 
 public class StudentController {
 
@@ -39,19 +39,23 @@ public class StudentController {
     }        
 
     @GetMapping("/list")
-    public String listStudents(Model model) {
+    public String listStudents(Model model,@RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "5") int size) {
 
-        model.addAttribute("students", studentService.findAll());
+        model.addAttribute("students", studentService.findAll(page > 0 ? page : 0, size));
+
+        model.addAttribute("promotions", promotionService.findAll());
 
         return "pages/student/list";
     }        
 
     @GetMapping("/add")
-    public String showAddStudentForms(Model model) {
+    public String showAddStudentForms(Model model,@RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "5") int size) {
 
         model.addAttribute("promotions", promotionService.findAll());
 
-        return "pages/student/list";
+        return "pages/student/add";
     }        
 
     @PostMapping("/add")

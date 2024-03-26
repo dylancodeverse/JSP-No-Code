@@ -28,6 +28,12 @@ jsp-list:{
             #Column# = String.getAttrName$
         <loop/>        
     }
+    bodyTwo:{
+        separator=concat
+        <loop each $datasources$.getAttributesForeignClass : String>
+            #Column# = String.getForeignKeyInformation.getTableOrigineUpFirst$
+        <loop/>        
+    }    
     bodyThree:{
         #Entity#= $datasources$.getLabelUpFirst$
         #entity#= $datasources$.getLabel$
@@ -38,7 +44,7 @@ jsp-list:{
     }
     bodyFive:{
         separator=concat
-        <loop each $datasources$.getAttributesWithLabelFirstNoForeignTable : str>
+        <loop each $datasources$.getAttributesWithLabelFirstNoForeignTableAndNoPK : str>
             #entity#=$datasources$.getLabel$
             #Column#=str.getAttrName$().toString
         <loop/>        
