@@ -104,7 +104,7 @@ public class MainProcess {
         String url = tmpl.getChild().BFS("url").getValue().trim();
         String user = tmpl.getChild().BFS("user").getValue().trim();
         String paswd = tmpl.getChild().BFS("password").getValue().trim();
-        String globV = tmpl.getChild().BFS("global_variable").getValue().trim();
+        String globV = search(tmpl, new String [] {"global_variable"},templateName).trim();
         String templateFile = tmpl.search("template", templateName).getValue().trim();
         String fileExtension = search(tmpl, new String[] { "fileExtension" }, templateName).trim();
         String outputPath = search(tmpl, new String[] { "outputPath" }, templateName).trim();
