@@ -4,7 +4,7 @@ import process.MainProcess;
 public class App {
     public static void main(String[] args) throws Exception {
         new MainProcessNew().scriptProcess(
-                "C:\\Users\\MISA\\Desktop\\Workspace\\S6\\Mr-Naina\\GenesisForJSP\\test\\fichierdegeneration.tmpl",
+                "C:\\Users\\MISA\\Desktop\\Workspace\\S6\\Mr-Naina\\Version 2\\JSP-No-Code\\JSP-NO-CODE\\test\\fichierdegeneration.tmpl",
                 "jsp-list", new String[] { "student" });
         // new MainProcess().scriptProcessOnePage(
         //     "C:\\Users\\MISA\\Desktop\\Workspace\\S6\\Mr-Naina\\GenesisForJSP\\test\\fichierdegeneration.tmpl",
