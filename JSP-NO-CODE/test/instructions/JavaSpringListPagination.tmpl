@@ -1,0 +1,54 @@
+jsp-list-pagination:{
+    firstLine:{
+    }
+    Imports:{
+        #import#= java.util.List
+    }
+    Imports:{
+        #import#= scaffold.framework.demo.entity.$datasources$.getLabelUpFirst$
+    }
+    Imports:{
+        separator=concat
+        <loop each $datasources$.getAttributesForeignClass : Attribute>
+            #import#= scaffold.framework.demo.entity.Attribute.getForeignKeyInformation.getTableOrigineUpFirst$         
+        <loop/>    
+    }
+
+    head:{
+        #incHeaderFile#=../../templates/header.jsp
+        #Entity#= $datasources$.getLabelUpFirst$
+    }
+    bodyOne:{
+        #incNav#=../../templates/nav.jsp
+        #incAppHeader#=../../templates/app-header.jsp
+        #Entity#=$datasources$.getLabelUpFirst$
+    }
+    bodyTwo:{
+        separator=concat
+        <loop each $datasources$.getAttributesWithLabelFirstNoForeignTable : String>
+            #Column# = String.getAttrName$
+        <loop/>        
+    }
+    bodyThree:{
+        #Entity#= $datasources$.getLabelUpFirst$
+        #entity#= $datasources$.getLabel$
+    }
+    bodyFour:{
+        #entity#=$datasources$.getLabel$
+        #PkName#=$datasources$.getAttributeWithPK.getAttrName$
+    }
+    bodyFive:{
+        separator=concat
+        <loop each $datasources$.getAttributesWithLabelFirstNoForeignTable : String>
+            #entity#=$datasources$.getLabel$
+            #Column#=String.getAttrName$
+        <loop/>        
+    }
+    bodySix:{
+        #entity#= $datasources$.getLabel$
+        #PkName#=$datasources$.getAttributeWithPK.getAttrName$
+    }
+
+
+}
+

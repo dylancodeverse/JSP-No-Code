@@ -1,0 +1,28 @@
+jsp-edit:{
+    jspFormAfterImport:{
+        #FormName#= Edit
+        #formName# = edit
+        #Entity# = $datasources$.getLabelUpFirst$
+        #entity#= $datasources$.getLabel$
+    }
+    inputFlex:{
+        separator=concat
+        <loop each $datasources$.getAttributesWithLabelFirstNoForeignTable : String>
+            #Column#= String.getAttrName$
+            #column# = String.getAttrName$
+            #type#= String.getHTMLType$
+        <loop/>        
+    }
+    inputForeignTable:{
+        separator = concat
+        <loop each $datasources$.getAttributesForeignClass : Attribute>
+            FT =Attribute.getForeignKeyInformation.getTableOrigineUpFirst$         
+            ft=Attribute.getForeignKeyInformation.getTableOrigine$
+        <loop/>                
+    }    
+    endLineJspForm:{
+        #FormName#= Edit
+        #Entity# = $datasources$.getLabelUpFirst$
+        #entity# =$datasources$.getLabel$
+    }
+}

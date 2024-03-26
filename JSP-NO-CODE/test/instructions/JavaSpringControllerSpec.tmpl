@@ -1,0 +1,196 @@
+java-spring-controller-spec:{    
+
+    packageDeclaration:{
+        #package#= scaffold.framework.demo.controller
+    }   
+    Imports:{
+        loop = 7
+        separator=concat
+        #packageSource#=    <loop>
+                                  org.springframework.stereotype.Controller
+                                  org.springframework.ui.Model
+                                  org.springframework.web.bind.annotation.GetMapping
+                                  org.springframework.web.bind.annotation.PathVariable
+                                  org.springframework.web.bind.annotation.PostMapping
+                                  org.springframework.web.bind.annotation.RequestMapping
+                                  org.springframework.web.bind.annotation.RequestParam
+                            <loop/>
+    }
+    Imports:{
+        #packageSource#=scaffold.framework.demo.entity.$datasources$.getLabelUpFirst$
+    }
+    Imports:{
+        #packageSource#=    scaffold.framework.demo.service.$datasources$.getLabelUpFirst$Service
+    }
+    Imports:{
+        separator=concat
+        <loop each $datasources$.getAttributesForeignClass : Attribute>
+            #packageSource# =scaffold.framework.demo.service.Attribute.getForeignKeyInformation.getTableOrigineUpFirst$Service         
+        <loop/>
+    }
+    Imports:{
+        separator=concat
+        <loop each $datasources$.getAttributesForeignClass : Attribute>
+            #packageSource# =scaffold.framework.demo.entity.Attribute.getForeignKeyInformation.getTableOrigineUpFirst$Model         
+        <loop/>
+    }
+
+    annotationDeclaration:{
+        #url#=$datasources$.getLabel$
+    }
+    classDeclaration:{
+        #ClassName# = $datasources$.getLabelUpFirst$Controller
+    }
+    fieldsDeclaration:{
+        #encaps# = private
+        #type# = $datasources$.getLabelUpFirst$Service
+        #name#= $datasources$.getLabel$Service
+    }
+
+    fieldsDeclaration:{
+        separator=concat
+        <loop each $datasources$.getAttributesForeignClass : Attribute>
+            #encaps# = private
+            #type# = Attribute.getForeignKeyInformation.getTableOrigineUpFirst$Model 
+            #name#= Attribute.getForeignKeyInformation.getTableOrigine$Model 
+        <loop/>        
+    }
+
+    constructorDeclaration:{
+        #Entity#= $datasources$.getLabelUpFirst$
+        #entity# =  $datasources$.getLabel$
+    }
+    constructorDeclaration2:{
+        separator=concat
+        <loop each $datasources$.getAttributesForeignClass : Attribute>
+            #FT# =Attribute.getForeignKeyInformation.getTableOrigineUpFirst$         
+            #ft#=Attribute.getForeignKeyInformation.getTableOrigine$
+        <loop/>        
+    }
+    constructorDeclaration3:{
+
+    }    
+    constructorContent:{
+             #entity# =  $datasources$.getLabel$   
+    }
+    constructorContent2:{
+        separator=concat
+        <loop each $datasources$.getAttributesForeignClass : Attribute>
+            #FT# =Attribute.getForeignKeyInformation.getTableOrigineUpFirst$         
+            #ft#=Attribute.getForeignKeyInformation.getTableOrigine$
+        <loop/>                
+    }
+    constructorContentEnd:{
+    }
+    GetDeclarationMethod:{
+        #url#= list
+        #prefix#= list
+        #Entity#= $datasources$.getLabelUpFirst$
+    }
+
+    GetContentMethod:{
+        #entity# =  $datasources$.getLabel$
+    }
+    GetContentEndLineMethod:{
+        #entity# =  $datasources$.getLabel$
+    }
+    GetDeclarationMethod:{
+        #url#= add
+        #prefix#= showAdd
+        #Entity#= $datasources$.getLabelUpFirst$Form        
+    }
+    GetContentMethod:{
+        separator=concat
+        <loop each $datasources$.getAttributesForeignClass : Attribute>
+            #entity# =  Attribute.getForeignKeyInformation.getTableOrigine$
+        <loop/>                        
+    }
+    GetContentEndLineMethod:{
+        #entity# =  $datasources$.getLabel$
+    }     
+    PostFlexDeclaration:{
+        #flexName#=add
+        #Entity#= $datasources$.getLabelUpFirst$
+    }
+    PostFlexArgs:{
+        separator=concat
+        <loop each $datasources$.getAttributesForeignClass : Attribute>
+            #ft# =  Attribute.getForeignKeyInformation.getTableOrigine$
+        <loop/>                                
+    }
+    PostFlexArgs2:{
+        #Entity#= $datasources$.getLabelUpFirst$
+        #entity# =  $datasources$.getLabel$        
+    }
+    PostAddContent1:{
+        separator=concat
+        <loop each $datasources$.getAttributesForeignClass : Attribute>
+            #FT# =  Attribute.getForeignKeyInformation.getTableOrigineUpFirst$
+            #ft# =  Attribute.getForeignKeyInformation.getTableOrigine$       
+            #entity# =  $datasources$.getLabel$        
+        <loop/>                                
+    }
+    PostAddContentEnd:{
+            #entity# =  $datasources$.getLabel$        
+    }
+
+    GetEditDeclaration:{
+        #Entity#= $datasources$.getLabelUpFirst$
+        #PkType#= $datasources$.getAttributeWithPK.getAttrName$
+        #entity# =  $datasources$.getLabel$
+    }    
+    GetEditContent:{
+        separator=concat
+        <loop each $datasources$.getAttributesForeignClass : Attribute>
+            #FT# =  Attribute.getForeignKeyInformation.getTableOrigineUpFirst$
+            #ft# =  Attribute.getForeignKeyInformation.getTableOrigine$       
+            #entity# =  $datasources$.getLabel$
+        <loop/>                                        
+    }
+
+    GetEditEndLine:{
+        #entity# =  $datasources$.getLabel$
+    }    
+
+     PostFlexDeclaration:{
+        #flexName#=edit
+        #Entity#= $datasources$.getLabelUpFirst$
+    }
+    PostFlexArgs:{
+        separator=concat
+        <loop each $datasources$.getAttributesForeignClass : Attribute>
+            #ft# =  Attribute.getForeignKeyInformation.getTableOrigine$
+        <loop/>                                
+    }
+    PostFlexArgs2:{
+        #Entity#= $datasources$.getLabelUpFirst$
+        #entity# =  $datasources$.getLabel$        
+    }   
+
+    PostEditContent1:{
+        #entity# =  $datasources$.getLabel$        
+        #PkName# = Id
+    }
+    PostEditContent2:{
+        separator=concat
+        <loop each $datasources$.getAttributesForeignClass : Attribute>
+            #ft# =  Attribute.getForeignKeyInformation.getTableOrigine$
+        <loop/>                                
+    }
+    PostEditContent3:{
+
+    }
+    PostEditContent4:{
+        separator=concat
+        <loop each $datasources$.getAttributesForeignClass : Attribute>
+            #FT# =  Attribute.getForeignKeyInformation.getTableOrigineUpFirst$
+            #ft# =  Attribute.getForeignKeyInformation.getTableOrigine$       
+            #entity# =  $datasources$.getLabel$
+        <loop/>                                                
+    }
+    PostEditContent5:{
+        #entity# =  $datasources$.getLabel$        
+    }
+    endLine:{
+    }
+}

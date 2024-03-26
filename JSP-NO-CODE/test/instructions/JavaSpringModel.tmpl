@@ -1,0 +1,106 @@
+java-spring-model:{
+
+    packageDeclaration:{
+        #package# = scaffold.framework.demo.entity
+    }
+
+    Imports:{
+        #packageSource#= jakarta.persistence.*
+        
+    }
+
+    Imports:{
+        separator=concat
+        <loop each $datasources$.getPossibleImportForDataSources : String>
+            #packageSource# = String$
+        <loop/>        
+    }
+    annotationDeclaration:{
+        #tableName#=$datasources$.getLabel$
+    }  
+    
+    classDeclaration:{
+        #ClassName# = $datasources$.getLabelUpFirst$Model
+    } 
+    fieldsWithPrimaryKey:{
+        #encaps# = private
+        #type# = $datasources$.getAttributeWithPK.getNewType$
+        #name# = $datasources$.getAttributeWithPK.getAttrName$
+    }
+
+
+    fieldsNoPrimaryKeyDeclaration:{
+        separator=line
+        <loop each $datasources$.getAttributesNoPrimaryKey : Attribute>
+            #annotation# = 
+            #encaps# = private
+            #type# = Attribute.getNewType$
+            #name# = Attribute.getAttrName$
+        <loop/>        
+    }
+
+    fieldsForeignClass:{
+        separator=concat
+        <loop each $datasources$.getAttributesForeignClass : Attribute>
+            #encaps# = private
+            #type# = Attribute.getForeignKeyInformation.getTableOrigineUpFirst$
+            #name# = Attribute.getForeignKeyInformation.getTableOrigine$
+        <loop/>        
+    }    
+
+
+
+    functionDeclaration:{
+        separator=line
+        <loop each $datasources$.getAttributesWithLabelFirstNoForeignTable : Attribute>
+            
+            #encaps# = public
+            #return# = void
+            #name# = setAttribute.getAttrName$
+            #args# = Attribute.getNewType$ value
+            #body# = this.Attribute.getAttrNameSimple$= value ;
+        
+        <loop/>
+    }
+    functionDeclaration:{
+        separator=line
+        <loop each $datasources$.getAttributesForeignClass : Attribute>
+            
+            #encaps# = public
+            #return# = void
+            #name# = setAttribute.getForeignKeyInformation.getTableOrigine$
+            #args# = Attribute.getForeignKeyInformation.getTableOrigineUpFirst$ value
+            #body# = this.Attribute.getForeignKeyInformation.getTableOrigine$= value ;
+        
+        <loop/>
+    }
+
+    functionDeclaration:{
+        separator=line
+        <loop each $datasources$.getAttributesWithLabelFirstNoForeignTable : Attribute>
+            
+            #encaps# = public
+            #return# = Attribute.getNewType$
+            #name# = getAttribute.getAttrName$
+            #args# =
+            #body# = return this.Attribute.getAttrNameSimple$ ;
+        
+        <loop/>
+    }
+
+    functionDeclaration:{
+        separator=line
+        <loop each $datasources$.getAttributesForeignClass : Attribute>
+            
+            #encaps# = public
+            #return# = Attribute.getForeignKeyInformation.getTableOrigineUpFirst$
+            #name# = Attribute.getForeignKeyInformation.getTableOrigine$
+            #args# =
+            #body# = return this.Attribute.getForeignKeyInformation.getTableOrigine$ ;
+        
+        <loop/>
+    }
+    endLine:{
+
+    }
+}

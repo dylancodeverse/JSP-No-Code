@@ -1,0 +1,37 @@
+java-spring-service:{
+    packageDeclaration:{
+                #package# = scaffold.framework.demo.service
+    }
+    Imports:{
+        loop = 2
+        separator=concat
+        #packageSource#=    <loop>
+                                 java.util.List
+                                 org.springframework.stereotype.Service
+                            <loop/>
+    }
+    
+    Imports:{
+        #packageSource#= scaffold.framework.demo.entity.$datasources$.getLabelUpFirst$
+    }
+    Imports:{
+        #packageSource#= scaffold.framework.demo.repository.$datasources$.getLabelUpFirst$Repository
+    }
+
+    annotationDeclaration:{
+
+    }
+    classDeclaration:{
+        #ClassName#= $datasources$.getLabelUpFirst$Service
+    }
+    fieldsDeclaration:{
+        #encaps# = private
+        #type# = $datasources$.getLabelUpFirst$Repository
+        #name#= $datasources$.getLabel$Repository
+    }
+    randomContent:{
+        #entity#= $datasources$.getLabel$Repository
+        #Entity#= $datasources$.getLabelUpFirst$Repository
+    }
+
+}

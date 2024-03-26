@@ -1,0 +1,73 @@
+java-spring-model:{
+
+    packageDeclaration:{
+        #package# = modeles 
+    }
+
+    Imports:{
+        loop = 4
+        separator=concat
+        #packageSource#=    <loop>
+                                jakarta.persistence.Entity
+                                jakarta.persistence.GeneratedValue
+                                jakarta.persistence.GenerationType
+                                jakarta.persistence.Id
+                            <loop/>
+        
+    }
+
+    Imports:{
+        separator=concat
+        <loop each $datasources$.getPossibleImportForDataSources : String>
+            #packageSource# = String$
+        <loop/>        
+    }
+    annotationDeclaration:{
+        #annotationName# =Entity
+        #annotationValues# = "$datasources$.getLabelUpFirst$"
+    }  
+    
+    classDeclaration:{
+        #ClassName# = $datasources$.getLabelUpFirst$Model
+    } 
+
+    fieldsDeclaration:{
+        separator=line
+        <loop each $datasources$.getAttributes : Attribute>
+            #annotation# = 
+            #encaps# = private
+            #type# = Attribute.getNewType$
+            #name# = Attribute.getAttrName$
+        <loop/>        
+    }
+
+
+    functionDeclaration:{
+        separator=line
+        <loop each $datasources$.getAttributes : Attribute>
+            
+            #encaps# = public
+            #return# = void
+            #name# = setAttribute.getAttrName$
+            #args# = Attribute.getNewType$ value
+            #body# = this.Attribute.getAttrName$= value ;
+        
+        <loop/>
+    }
+
+    functionDeclaration:{
+        separator=line
+        <loop each $datasources$.getAttributes : Attribute>
+            
+            #encaps# = public
+            #return# = Attribute.getNewType$
+            #name# = getAttribute.getAttrName$
+            #args# =
+            #body# = return this.Attribute.getAttrName$ ;
+        
+        <loop/>
+    }
+    endLine:{
+
+    }
+}

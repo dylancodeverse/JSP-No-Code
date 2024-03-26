@@ -1,0 +1,20 @@
+java-spring-repository:{
+    packageDeclaration:{
+        #package# = scaffold.framework.demo.repository
+    }
+
+    Imports:{
+        #packageSource#=org.springframework.data.jpa.repository.JpaRepository
+        
+    }
+    Imports:{
+        #packageSource# = scaffold.framework.demo.entity.$datasources$.getLabelUpFirst$Model
+    }
+
+    repositoryDeclaration:{
+        #name#   = $datasources$.getLabelUpFirst$Repository
+        #Entity# = $datasources$.getLabelUpFirst$
+        #IdType# =$datasources$.getAttributeWithPK.getNewType$
+    }
+}
+
