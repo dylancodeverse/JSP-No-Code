@@ -105,7 +105,6 @@ public class MainProcess {
         String user = tmpl.getChild().BFS("user").getValue().trim();
         String paswd = tmpl.getChild().BFS("password").getValue().trim();
         String globV = search(tmpl, new String [] {"global_variable"},templateName).trim();
-        System.out.println(globV);
         String templateFile = tmpl.search("template", templateName).getValue().trim();
         String fileExtension = search(tmpl, new String[] { "fileExtension" }, templateName).trim();
         String outputPath = search(tmpl, new String[] { "outputPath" }, templateName).trim();
