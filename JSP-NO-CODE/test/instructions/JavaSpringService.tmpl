@@ -24,14 +24,10 @@ java-spring-service:{
     classDeclaration:{
         #ClassName#= $datasources$.getLabelUpFirst$Service
     }
-    fieldsDeclaration:{
-        #encaps# = private
-        #type# = $datasources$.getLabelUpFirst$Repository
-        #name#= $datasources$.getLabel$Repository
-    }
+
     randomContent:{
-        #entity#= $datasources$.getLabel$Repository
-        #Entity#= $datasources$.getLabelUpFirst$Repository
+        #entity#= $datasources$.getLabel$
+        #Entity#= $datasources$.getLabelUpFirst$
     }
 
 }

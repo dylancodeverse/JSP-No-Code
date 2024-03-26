@@ -4,7 +4,7 @@ java-spring-controller-spec:{
         #package#= scaffold.framework.demo.controller
     }   
     Imports:{
-        loop = 7
+        loop = 8
         separator=concat
         #packageSource#=    <loop>
                                   org.springframework.stereotype.Controller
@@ -14,6 +14,7 @@ java-spring-controller-spec:{
                                   org.springframework.web.bind.annotation.PostMapping
                                   org.springframework.web.bind.annotation.RequestMapping
                                   org.springframework.web.bind.annotation.RequestParam
+                                  java.util.List
                             <loop/>
     }
     Imports:{
@@ -31,7 +32,7 @@ java-spring-controller-spec:{
     Imports:{
         separator=concat
         <loop each $datasources$.getAttributesForeignClass : Attribute>
-            #packageSource# =scaffold.framework.demo.entity.Attribute.getForeignKeyInformation.getTableOrigineUpFirst$Model         
+            #packageSource# =scaffold.framework.demo.entity.Attribute.getForeignKeyInformation.getTableOrigineUpFirst$         
         <loop/>
     }
 
@@ -51,8 +52,8 @@ java-spring-controller-spec:{
         separator=concat
         <loop each $datasources$.getAttributesForeignClass : Attribute>
             #encaps# = private
-            #type# = Attribute.getForeignKeyInformation.getTableOrigineUpFirst$Model 
-            #name#= Attribute.getForeignKeyInformation.getTableOrigine$Model 
+            #type# = Attribute.getForeignKeyInformation.getTableOrigineUpFirst$Service 
+            #name#= Attribute.getForeignKeyInformation.getTableOrigine$Service 
         <loop/>        
     }
 
@@ -76,8 +77,8 @@ java-spring-controller-spec:{
     constructorContent2:{
         separator=concat
         <loop each $datasources$.getAttributesForeignClass : Attribute>
-            #FT# =Attribute.getForeignKeyInformation.getTableOrigineUpFirst$         
-            #ft#=Attribute.getForeignKeyInformation.getTableOrigine$
+            #FT# =Attribute.getForeignKeyInformation.getTableOrigine$         
+            #ft#=Attribute.getForeignKeyInformation.getTableOrigine$Service
         <loop/>                
     }
     constructorContentEnd:{
@@ -136,7 +137,7 @@ java-spring-controller-spec:{
 
     GetEditDeclaration:{
         #Entity#= $datasources$.getLabelUpFirst$
-        #PkType#= $datasources$.getAttributeWithPK.getAttrName$
+        #PkType#= $datasources$.getAttributeWithPK.getNewType$
         #entity# =  $datasources$.getLabel$
     }    
     GetEditContent:{
@@ -191,6 +192,11 @@ java-spring-controller-spec:{
     PostEditContent5:{
         #entity# =  $datasources$.getLabel$        
     }
+    DeleteContentMethod:{
+        #entity#= $datasources$.getLabel$
+        #Entity#= $datasources$.getLabelUpFirst$
+    }        
     endLine:{
     }
+
 }

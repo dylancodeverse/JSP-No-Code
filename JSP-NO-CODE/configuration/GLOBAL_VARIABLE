@@ -95,7 +95,7 @@ classDeclaration:{
 public class #ClassName# /{
     }
     java-springy-model:{
-        public class #ClassName# extends Repository<#ClassName#, Long>/{
+        public class #ClassName# extends Repository<#ClassName#, Integer>/{
     }
     c#-model:{
         public partial class #ClassName#
@@ -143,11 +143,11 @@ randomContent:{
         return #entity#Repository.findAll();
     /}
 
-    public #Entity# findById(Long id) /{
+    public #Entity# findById(Integer id) /{
         return #entity#Repository.findById(id).orElse(null);
     /}
 
-    public void deleteById(Long id) /{
+    public void deleteById(Integer id) /{
         #entity#Repository.deleteById(id);
     /}
         
@@ -176,8 +176,8 @@ randomContent:{
         return "redirect:/#entity#s/list";
     /}
 
-    @GetMapping("/edit//{id/}")
-    public String showEdit#Entity#Form(@PathVariable Long id, Model model) /{
+    @GetMapping("/edit///{id/}")
+    public String showEdit#Entity#Form(@PathVariable Integer id, Model model) /{
         model.addAttribute("#entity#", #entity#Service.findById(id));
         return "pages/#entity#/edit";
     /}
@@ -191,8 +191,8 @@ randomContent:{
         return "redirect:/#entity#s/list";
     /}
 
-    @GetMapping("/delete//{id/}")
-    public String delete#Entity#(@PathVariable Long id) /{
+    @GetMapping("/delete///{id/}")
+    public String delete#Entity#(@PathVariable Integer id) /{
         #entity#Service.deleteById(id);
         return "redirect:/#entity#s/list";
     /}
@@ -293,7 +293,7 @@ PostAddContentEnd:{
 
 GetEditDeclaration:{
     java-spring-controller:{
-    @GetMapping("/edit//{id/}")
+    @GetMapping("/edit///{id/}")
     public String showEdit#Entity#Form(@PathVariable #PkType# id, Model model) /{
         #Entity# #entity# = #entity#Service.findById(id);
     }
@@ -336,7 +336,7 @@ PostEditContent3:{
 PostEditContent4:{
     java-spring-controller:{
             #FT# #ft# = new #FT#();
-            #ft#.setId(#ft#Id);    
+            #ft#.setId(Integer.parseInt(#ft#Id));    
             #entity#.set#FT#(#ft#);    
     }
 }
@@ -349,6 +349,15 @@ PostEditContent5:{
     }
 }
 
+DeleteContentMethod:{
+    java-spring-controller:{
+    @GetMapping("/delete///{id/}")
+    public String delete#Entity#(@PathVariable Integer id) /{
+        #entity#Service.deleteById(id);
+        return "redirect:/#entity#s/list";
+    /}        
+    }
+}
 
 
 

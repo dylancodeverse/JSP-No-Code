@@ -7,7 +7,7 @@ import java.sql.Date ;
 @Entity
 @Table(name = "student")        
 
-public class StudentModel {
+public class Student {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -44,7 +44,7 @@ public class StudentModel {
     }
 
 
-    public void setpromotion (Promotion value) {
+    public void setPromotion (Promotion value) {
         this.promotion= value ;
     }
 
@@ -66,7 +66,7 @@ public class StudentModel {
     }
 
 
-    public Promotion promotion () {
+    public Promotion getPromotion () {
         return this.promotion ;
     }
 

@@ -20,7 +20,7 @@ java-spring-model:{
     }  
     
     classDeclaration:{
-        #ClassName# = $datasources$.getLabelUpFirst$Model
+        #ClassName# = $datasources$.getLabelUpFirst$
     } 
     fieldsWithPrimaryKey:{
         #encaps# = private
@@ -68,7 +68,7 @@ java-spring-model:{
             
             #encaps# = public
             #return# = void
-            #name# = setAttribute.getForeignKeyInformation.getTableOrigine$
+            #name# = setAttribute.getForeignKeyInformation.getTableOrigineUpFirst$
             #args# = Attribute.getForeignKeyInformation.getTableOrigineUpFirst$ value
             #body# = this.Attribute.getForeignKeyInformation.getTableOrigine$= value ;
         
@@ -94,7 +94,7 @@ java-spring-model:{
             
             #encaps# = public
             #return# = Attribute.getForeignKeyInformation.getTableOrigineUpFirst$
-            #name# = Attribute.getForeignKeyInformation.getTableOrigine$
+            #name# = getAttribute.getForeignKeyInformation.getTableOrigineUpFirst$
             #args# =
             #body# = return this.Attribute.getForeignKeyInformation.getTableOrigine$ ;
         
