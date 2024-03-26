@@ -150,6 +150,23 @@ bodyThree:{
     }
 }
 
+bodyThreeWithPagination:{
+    jsp-list-pagination:{
+                                                    <th class="border-bottom-0">
+                                                        <h6 class="fw-semibold mb-0">Actions</h6>
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                                <% Page<#Entity#> #entity# = (Page<#Entity#>) request.getAttribute("#entity#s");
+                                                int currentPage = #entity#.getNumber();
+                                                int totalPages = #entity#.getTotalPages();
+                                                List<#Entity#> #entity#s = #entity#.getContent();
+                                                for (#Entity# #entity# : #entity#s) /{ %>
+
+                                                    <tr>        
+    }
+}
+
 bodyFour:{
     jsp-list:{
                                                 <td class="border-bottom-0"><h6 class="fw-semibold mb-0"><%= #entity#.get#PkName#() %></h6></td>
