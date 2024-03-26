@@ -104,11 +104,12 @@ public class MainProcess {
         String url = tmpl.getChild().BFS("url").getValue().trim();
         String user = tmpl.getChild().BFS("user").getValue().trim();
         String paswd = tmpl.getChild().BFS("password").getValue().trim();
-        String globV = search(tmpl, new String [] {"global_variable"},templateName).trim();
+        String globV = search(tmpl, new String[] { "global_variable" }, templateName).trim();
         String templateFile = tmpl.search("template", templateName).getValue().trim();
         String fileExtension = search(tmpl, new String[] { "fileExtension" }, templateName).trim();
         String outputPath = search(tmpl, new String[] { "outputPath" }, templateName).trim();
         String fileNameSuffix = search(tmpl, new String[] { "fileNameSuffix" }, templateName).trim();
+        boolean usedF = Boolean.valueOf(search(tmpl, new String[] { "useClassForFileName" }, templateName).trim());
         // ----------------------------------------
         // process
         DataSource[] dataSources = getDataSources(url, user, paswd);
@@ -130,10 +131,12 @@ public class MainProcess {
                 RequestProcess requestProcess = new RequestProcess(dataSource,
                         globV,
                         templateFile);
-                String fileName = dataSource.getLabelUpFirst();
-                if (!fileNameSuffix.isBlank()) {
-                    fileName = fileName + fileNameSuffix;
+                String fileName = "";
+                if (usedF) {
+                    fileName = dataSource.getLabelUpFirst();
                 }
+                fileName = fileName + fileNameSuffix;
+
                 TextProcess.writeTextToFile(requestProcess.getResultstAsString(),
                         outputPath + fileName + fileExtension);
                 System.out.println(fileName + fileExtension + " generated successfully!");
@@ -143,10 +146,12 @@ public class MainProcess {
                     RequestProcess requestProcess = new RequestProcess(dataSources[j],
                             globV,
                             templateFile);
-                    String fileName = dataSources[j].getLabelUpFirst();
-                    if (!fileNameSuffix.isBlank()) {
-                        fileName = fileName + fileNameSuffix;
+                    String fileName = "";
+                    if (usedF) {
+                        fileName = dataSources[j].getLabelUpFirst();
                     }
+                    fileName = fileName + fileNameSuffix;
+
                     TextProcess.writeTextToFile(requestProcess.getResultstAsString(),
                             outputPath + fileName + fileExtension);
                 }
