@@ -1,0 +1,425 @@
+
+
+packageDeclaration:{
+    java:{
+package #package#;
+    }    
+    c#:{
+        namespace #package#
+        /{
+    }
+    c#-mvc-controller:{
+        namespace #package# ;
+    }
+}
+
+endLine:{
+    java:{
+/}
+    }
+}
+
+
+Imports:{
+    java:{
+import #packageSource# ;
+    }    
+    c#:{
+        using #packageSource# ;
+    }
+}
+
+
+
+annotationDeclaration:{
+    java:{
+        @#annotationName#(#annotationValues#)
+    }
+    c#:{
+
+    }
+    java-spring-model:{
+@Entity
+@Table(name = "#tableName#")        
+    }
+    java-spring-controller:{
+@Controller
+@RequestMapping("/#url#")        
+    }
+    java-spring-service:{
+@Service        
+    }
+}
+
+fieldsNoPrimaryKeyDeclaration:{
+    java-spring-model:{
+    @Column(name = "#name#", nullable = false)    
+    #encaps# #type# #name# ;
+    }
+}   
+
+fieldsForeignClass:{
+    java-spring-model:{
+    @ManyToOne
+    @JoinColumn(name = "#name#", nullable = false)
+    #encaps# #type# #name# ;
+    }
+}
+
+fieldsWithPrimaryKey:{
+    java-spring-model:{
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    #encaps# #type# #name# ;
+    }
+}
+
+toStringDeclaration:{
+    java:{
+    @Override
+    public String toString() {
+        return #toString#;
+    }        
+    }
+}
+
+repositoryDeclaration:{
+    java-spring-repository:{
+public interface #name# extends JpaRepository<#Entity#, #IdType#> /{
+/}
+    }
+}
+
+classDeclaration:{
+    java:{
+public class #ClassName# /{
+    }
+    java-springy-model:{
+        public class #ClassName# extends Repository<#ClassName#, Long>/{
+    }
+    c#-model:{
+        public partial class #ClassName#
+        /{
+    }
+    c#-mvc-controller:{
+        public class #ClassName# : ControllerBase
+        /{
+    }
+}
+
+fieldsDeclaration:{
+    java:{
+    #encaps# #type# #name# ;
+    }
+    java-spring-model:{
+        #annotation#
+        #encaps# #type# #name# ;
+    }
+}
+
+
+functionDeclaration:{
+    java:{
+    #encaps# #return# #name# (#args#) /{
+        #body#
+    /}
+    }
+}
+
+randomContent:{
+    java-spring-service:{
+        
+    private #Entity#Repository #entity#Repository;
+
+    public #Entity#Service(#Entity#Repository #entity#Repository) /{
+        this.#entity#Repository = #entity#Repository;
+    /}
+
+    public #Entity# save(#Entity# #entity#) /{
+        return #entity#Repository.save(#entity#);
+    /}
+
+    public List<#Entity#> findAll() /{
+        return #entity#Repository.findAll();
+    /}
+
+    public #Entity# findById(Long id) /{
+        return #entity#Repository.findById(id).orElse(null);
+    /}
+
+    public void deleteById(Long id) /{
+        #entity#Repository.deleteById(id);
+    /}
+        
+/}    
+    }
+
+    java-spring-controller:{
+    public #Entity#Controller(#Entity#Service #entity#Service) /{
+        this.#entity#Service = #entity#Service;
+    /}
+
+    @GetMapping("/list")
+    public String list#Entity#s(Model model) /{
+        model.addAttribute("#entity#s", #entity#Service.findAll());
+        return "pages/#entity#/list";
+    /}
+
+    @GetMapping("/add")
+    public String showAdd#Entity#Form(Model model) /{
+        return "pages/#entity#/add";
+    /}
+
+    @PostMapping("/add")
+    public String add#Entity#(#Entity# #entity#) /{
+        #entity#Service.save(#entity#);
+        return "redirect:/#entity#s/list";
+    /}
+
+    @GetMapping("/edit//{id/}")
+    public String showEdit#Entity#Form(@PathVariable Long id, Model model) /{
+        model.addAttribute("#entity#", #entity#Service.findById(id));
+        return "pages/#entity#/edit";
+    /}
+
+    @PostMapping("/edit")
+    public String edit#Entity#(#Entity# #entity#) /{
+        // No error handling for yet
+        if (#entity#.getId() != null) /{
+            #entity#Service.save(#entity#);
+        /}
+        return "redirect:/#entity#s/list";
+    /}
+
+    @GetMapping("/delete//{id/}")
+    public String delete#Entity#(@PathVariable Long id) /{
+        #entity#Service.deleteById(id);
+        return "redirect:/#entity#s/list";
+    /}
+/}    
+    }
+}
+
+constructorDeclaration:{
+    java-spring-controller-spec:{
+    public #Entity#Controller(#Entity#Service #entity#Service
+    }
+}
+constructorDeclaration2:{
+    java-spring-controller-spec:{
+            ,#FT#Service #ft#Service
+    }
+}
+
+constructorDeclaration3:{
+    java-spring-controller-spec:{
+        ) /{
+    }            
+}
+
+
+constructorContent:{
+    java-spring-controller:{
+        this.#entity#Service = #entity#Service;        
+    }
+}
+
+constructorContent2:{
+    java-spring-controller-spec:{
+        this.#FT#Service = #ft#;
+    }
+}
+
+constructorContentEnd:{
+    All:{
+    /}        
+    }
+}
+
+GetDeclarationMethod:{
+    java-spring-controller:{
+    @GetMapping("/#url#")
+    public String #prefix##Entity#s(Model model) /{
+    }
+}
+
+GetContentMethod:{
+    java-spring-controller:{
+        model.addAttribute("#entity#s", #entity#Service.findAll());
+    }
+}
+
+GetContentEndLineMethod:{
+    java-spring-controller:{
+        return "pages/#entity#/list";
+    /}        
+    }   
+}
+
+PostFlexDeclaration:{
+    java-spring-controller:{
+    @PostMapping("/#flexName#")
+    public String #flexName##Entity#(
+    }
+}
+
+PostFlexArgs:{
+    java-spring-controller:{
+            @RequestParam String #ft#Id
+                        
+    }
+}
+
+PostFlexArgs2:{
+    java-spring-controller:{
+            , #Entity# #entity#)/{
+    }
+}
+
+PostAddContent1:{
+    java-spring-controller:{
+        #FT# #ft# = new #FT#();
+        #ft#.setId(Integer.parseInt(#ft#Id));
+        #entity#.set#FT#(#ft#);
+    }
+}
+PostAddContentEnd:{
+    java-spring-controller:{
+        #entity#Service.save(#entity#);
+        return "redirect:/#entity#s/list";
+    /}    
+    }
+}
+
+GetEditDeclaration:{
+    java-spring-controller:{
+    @GetMapping("/edit//{id/}")
+    public String showEdit#Entity#Form(@PathVariable #PkType# id, Model model) /{
+        #Entity# #entity# = #entity#Service.findById(id);
+    }
+}
+
+GetEditContent:{
+    java-spring-controller:{
+        List<#FT#> #ft#s = #ft#Service.findAll();
+        #ft#s.remove(#entity#.get#FT#());     
+        model.addAttribute("#ft#s", #ft#s);
+
+    }
+}
+
+GetEditEndLine:{
+    java-spring-controller:{
+        model.addAttribute("#entity#", #entity#);
+        return "pages/#entity#/edit";
+    /}        
+    }
+}
+PostEditContent1:{
+    java-spring-controller:{
+        if (#entity#.get#PkName#() != null          
+    }         
+}
+
+PostEditContent2:{
+    java-spring-controller:{
+               && #ft#Id != null
+    }
+}
+
+PostEditContent3:{
+    java-spring-controller:{
+            )/{
+    }
+}
+
+PostEditContent4:{
+    java-spring-controller:{
+            #FT# #ft# = new #FT#();
+            #ft#.setId(#ft#Id);    
+            #entity#.set#FT#(#ft#);    
+    }
+}
+PostEditContent5:{
+    java-spring-controller:{
+            #entity#Service.save(#entity#);
+        /}
+        return "redirect:/#entity#s/list";
+    /}        
+    }
+}
+
+
+
+
+
+types:{
+    Date:{
+        java:{
+            java.sql.Date
+        }
+    }    
+}
+
+
+SQLType:{
+    varchar:{
+        java:{
+            String        
+        }
+        c#:{
+            string
+        }
+    }
+
+    int4:{
+        java:{
+            Integer
+        }
+    }
+
+    Integer:{
+        java:{
+            Integer
+        }
+        c#:{
+            int
+        }
+    }
+
+    float8:{
+        java:{
+            double
+        }
+        c#:{
+            double
+        }
+    }
+
+    date:{
+        java:{
+            Date
+        }
+        c#:{
+            DateOnly
+        }
+    }
+
+    serial:{
+        java:{
+            Integer
+        }
+        c#:{
+            int
+        }
+    }
+
+    numeric:{
+        java:{
+            double
+        }
+       c#:{
+            double
+        }
+    }
+}
